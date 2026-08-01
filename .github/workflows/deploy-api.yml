@@ -3,7 +3,7 @@ name: Deploy API to Render
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - 'apps/api/**'
       - 'libs/**'
