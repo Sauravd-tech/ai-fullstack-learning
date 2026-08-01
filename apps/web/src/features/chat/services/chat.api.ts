@@ -4,10 +4,10 @@ export const sendChatMessage = async (message: string, history: any[], systemIns
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ message, history, systemInstruction }),
   });
-  
+
   if (!response.ok) {
     throw new Error('Network response was not ok');
   }
-  
+
   return response;
 };

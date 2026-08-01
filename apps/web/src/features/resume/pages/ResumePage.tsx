@@ -40,7 +40,8 @@ export const ResumePage = () => {
     }
 
     try {
-      const res = await fetch('http://localhost:3000/api/resume/analyze', {
+      const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+      const res = await fetch(`${baseUrl}/api/resume/analyze`, {
         method: 'POST',
         body: formData,
       });
