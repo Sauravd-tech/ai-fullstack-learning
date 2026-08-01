@@ -8,6 +8,6 @@
   "dependencies": {
     "tslib": "^2.3.0",
     "@google/generative-ai": "*",
-    "@ai-fullstack-learning/shared": "*"
+    "@ai-fullstack-learning/shared": "workspace:*"
   }
 }
