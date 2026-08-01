@@ -25,7 +25,7 @@ const DashboardLayout = () => {
       <aside className="w-full md:w-64 border-b md:border-b-0 md:border-r border-borderMain bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl flex flex-col transition-all flex-shrink-0 z-50 shadow-sm md:shadow-none">
         <div className="p-4 md:p-6 flex items-center justify-between">
           <h1 className="text-xl md:text-2xl font-extrabold tracking-tight text-brandRed dark:text-brandRed">
-            Nova AI
+            AI
           </h1>
           <div className="md:hidden flex items-center gap-2">
             <button onClick={toggleTheme} className="p-2 text-textMuted hover:text-brandRed transition-colors rounded-full hover:bg-slate-100/50 dark:hover:bg-slate-800/50">

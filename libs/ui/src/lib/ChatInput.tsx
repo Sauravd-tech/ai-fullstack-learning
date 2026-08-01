@@ -12,7 +12,7 @@ const ChatInput = ({ input, setInput, handleSend, loading }: ChatInputProps) => 
     <form className="flex gap-3 max-w-4xl mx-auto w-full items-center" onSubmit={handleSend}>
       <input 
         type="text" 
-        className="flex-1 px-5 h-14 rounded-full border border-borderMain bg-bgSecondary text-textMain focus:outline-none focus:border-brandRed focus:ring-2 focus:ring-brandRed/20 transition-all shadow-sm"
+        className="flex-1 px-5 py-4 h-14 rounded-full border border-borderMain bg-bgSecondary text-textMain focus:outline-none focus:border-brandRed focus:ring-2 focus:ring-brandRed/20 transition-all shadow-sm"
         value={input}
         onChange={(e) => setInput(e.target.value)}
         placeholder="Ask me anything..."
