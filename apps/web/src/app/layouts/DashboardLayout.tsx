@@ -16,7 +16,7 @@ const DashboardLayout = () => {
   ];
 
   return (
-    <div className="flex flex-col md:flex-row h-screen w-full bg-bgMain text-textMain overflow-hidden transition-colors duration-300 relative">
+    <div className="fixed inset-0 flex flex-col md:flex-row bg-bgMain text-textMain overflow-hidden transition-colors duration-300 z-0">
       {/* Glassmorphic Background Orbs */}
       <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-brandRed/10 dark:bg-brandRed/20 blur-[120px] pointer-events-none animate-pulse-slow"></div>
       <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-blue-500/10 dark:bg-blue-600/10 blur-[150px] pointer-events-none animate-float"></div>
