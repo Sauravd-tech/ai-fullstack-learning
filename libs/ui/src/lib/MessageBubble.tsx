@@ -15,7 +15,7 @@ const MessageBubble = ({ msg }: MessageBubbleProps) => {
   return (
     <div className={`max-w-[85%] md:max-w-[75%] px-4 py-3 rounded-2xl leading-relaxed break-words animate-fade-in shadow-sm ${
       isUser 
-        ? 'self-end bg-blue-600 text-white rounded-br-sm' 
+        ? 'self-end bg-aramexRed text-white rounded-br-sm' 
         : 'self-start bg-bgSecondary border border-borderMain text-textMain rounded-bl-sm'
     }`}>
       {isUser ? (

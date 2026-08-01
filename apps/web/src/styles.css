@@ -8,6 +8,9 @@
   --color-textMain: var(--text-main);
   --color-textMuted: var(--text-muted);
   
+  --color-aramexRed: #E31837;
+  --color-aramexRedDark: #C4122E;
+  
   --font-sans: 'Inter', sans-serif;
   
   --animate-fade-in: fadeIn 0.5s ease-out;

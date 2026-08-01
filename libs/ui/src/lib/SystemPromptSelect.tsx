@@ -12,7 +12,7 @@ const SystemPromptSelect = ({ value, onChange }: SystemPromptSelectProps) => {
       <select 
         value={value} 
         onChange={(e) => onChange(e.target.value)}
-        className="bg-bgSecondary text-textMain border border-borderMain px-3 py-1.5 md:py-2 rounded-lg outline-none cursor-pointer text-sm md:text-base focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all shadow-sm"
+        className="bg-bgSecondary text-textMain border border-borderMain px-3 py-1.5 md:py-2 rounded-lg outline-none cursor-pointer text-sm md:text-base focus:ring-2 focus:ring-aramexRed/20 focus:border-aramexRed transition-all shadow-sm"
       >
         <option value="You are a helpful AI chat assistant.">Helpful Assistant</option>
         <option value="You are a strict technical interviewer for a senior web developer position. Ask me one question at a time and evaluate my answers critically.">Tech Interviewer</option>
