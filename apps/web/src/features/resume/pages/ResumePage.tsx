@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { ApiResponse, ResumeAnalysisResponse } from '@ai-fullstack-learning/types';
-import { UploadCloud, FileText, CheckCircle, AlertCircle, Briefcase, Star, Loader2 } from 'lucide-react';
+import { UploadCloud, FileText, CheckCircle, AlertCircle, Briefcase, Star } from 'lucide-react';
+import { ScoreGauge } from '../components/ScoreGauge';
 
 export const ResumePage = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -62,22 +63,22 @@ export const ResumePage = () => {
 
   return (
     <div className="flex-1 w-full h-full overflow-y-auto p-4 sm:p-8">
-      <div className="flex flex-col items-center justify-start min-h-full max-w-5xl mx-auto space-y-8">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
+      <div className="flex flex-col items-center justify-start min-h-full max-w-5xl mx-auto space-y-8 pb-12">
+      <div className="text-center mt-4 md:mt-10 animate-fade-in">
+        <h1 className="text-4xl md:text-5xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600 tracking-tight drop-shadow-sm">
           AI Resume Analyzer
         </h1>
-        <p className="opacity-80 max-w-2xl mx-auto text-lg">
+        <p className="text-textMuted max-w-2xl mx-auto text-lg">
           Upload your resume and optional job description for a deep AI-driven analysis.
         </p>
       </div>
 
-      {!result && (
-        <div className="w-full max-w-2xl bg-bgMain border border-borderMain rounded-2xl p-8 shadow-xl space-y-6">
+      {!result && !loading && (
+        <div className="w-full max-w-2xl bg-bgSecondary border border-borderMain rounded-3xl p-6 md:p-10 shadow-xl shadow-slate-200/20 dark:shadow-none space-y-6 animate-slide-up">
           <div
             onClick={() => fileInputRef.current?.click()}
-            className={`border-2 border-dashed rounded-xl p-12 flex flex-col items-center justify-center cursor-pointer transition-all ${
-              file ? 'border-green-500 bg-green-500/10' : 'border-borderMain hover:border-blue-500 hover:bg-blue-500/5'
+            className={`border-2 border-dashed rounded-2xl p-10 md:p-14 flex flex-col items-center justify-center cursor-pointer transition-all duration-300 ${
+              file ? 'border-emerald-500 bg-emerald-500/10' : 'border-borderMain hover:border-blue-500 hover:bg-blue-500/5 hover:shadow-lg hover:shadow-blue-500/10'
             }`}
           >
             <input
@@ -89,23 +90,23 @@ export const ResumePage = () => {
             />
             {file ? (
               <>
-                <FileText className="w-12 h-12 text-green-500 mb-4" />
-                <div className="font-semibold text-lg">{file.name}</div>
-                <div className="opacity-60 text-sm">{(file.size / 1024 / 1024).toFixed(2)} MB</div>
+                <FileText className="w-14 h-14 text-emerald-500 mb-4 animate-pulse-slow" />
+                <div className="font-semibold text-lg text-textMain">{file.name}</div>
+                <div className="text-textMuted text-sm mt-1">{(file.size / 1024 / 1024).toFixed(2)} MB</div>
               </>
             ) : (
               <>
-                <UploadCloud className="w-12 h-12 text-blue-500 mb-4" />
-                <div className="font-semibold text-lg mb-2">Drag and drop your resume (PDF)</div>
-                <div className="opacity-60 text-sm">or click to browse from your computer (Max 5MB)</div>
+                <UploadCloud className="w-14 h-14 text-blue-500 mb-4 opacity-80" />
+                <div className="font-semibold text-lg mb-2 text-textMain">Drag and drop your resume (PDF)</div>
+                <div className="text-textMuted text-sm">or click to browse from your computer (Max 5MB)</div>
               </>
             )}
           </div>
 
-          <div className="space-y-2">
-            <label className="font-semibold text-sm opacity-80">Target Job Description (Optional)</label>
+          <div className="space-y-3">
+            <label className="font-semibold text-sm text-textMuted uppercase tracking-wide">Target Job Description (Optional)</label>
             <textarea
-              className="w-full bg-bgDark border border-borderMain rounded-lg p-3 h-32 focus:outline-none focus:border-blue-500 transition-colors"
+              className="w-full bg-bgMain border border-borderMain rounded-xl p-4 h-32 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all text-textMain resize-none"
               placeholder="Paste the job description here to tailor the analysis..."
               value={jobDescription}
               onChange={(e) => setJobDescription(e.target.value)}
@@ -113,88 +114,100 @@ export const ResumePage = () => {
           </div>
 
           {error && (
-            <div className="bg-red-500/10 border border-red-500/50 text-red-500 p-4 rounded-lg flex items-center gap-3">
+            <div className="bg-red-500/10 border border-red-500/50 text-red-500 p-4 rounded-xl flex items-center gap-3 animate-fade-in">
               <AlertCircle className="w-5 h-5 flex-shrink-0" />
-              <span>{error}</span>
+              <span className="font-medium">{error}</span>
             </div>
           )}
 
           <button
             onClick={handleAnalyze}
             disabled={!file || loading}
-            className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-600/50 disabled:cursor-not-allowed text-white font-semibold py-4 rounded-lg transition-colors flex justify-center items-center gap-2"
+            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-4 rounded-xl transition-all shadow-md hover:shadow-xl hover:shadow-blue-500/20 flex justify-center items-center gap-2 text-lg transform hover:-translate-y-1 active:translate-y-0 disabled:transform-none"
           >
-            {loading ? (
-              <>
-                <Loader2 className="w-5 h-5 animate-spin" />
-                Analyzing with AI...
-              </>
-            ) : (
-              'Analyze Resume'
-            )}
+            Analyze Resume
           </button>
         </div>
       )}
 
-      {result && (
-        <div className="w-full space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      {loading && (
+        <div className="w-full max-w-4xl space-y-8 animate-pulse-slow">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-bgMain border border-borderMain rounded-2xl p-6 shadow-lg flex flex-col items-center justify-center text-center space-y-2">
-              <div className="text-5xl font-bold text-blue-500">{result.overallScore}/100</div>
-              <div className="font-semibold opacity-80">Overall Match Score</div>
+            <div className="h-48 bg-bgSecondary border border-borderMain rounded-3xl shadow-sm"></div>
+            <div className="h-48 md:col-span-2 bg-bgSecondary border border-borderMain rounded-3xl shadow-sm"></div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="h-64 bg-bgSecondary border border-borderMain rounded-3xl shadow-sm"></div>
+            <div className="h-64 bg-bgSecondary border border-borderMain rounded-3xl shadow-sm"></div>
+          </div>
+          <div className="flex flex-col items-center mt-8 space-y-4">
+             <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+             <p className="text-textMuted font-medium animate-pulse">Our AI is reading your resume...</p>
+          </div>
+        </div>
+      )}
+
+      {result && !loading && (
+        <div className="w-full max-w-5xl space-y-8 animate-slide-up">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-bgSecondary border border-borderMain rounded-3xl p-8 shadow-xl shadow-slate-200/20 dark:shadow-none flex flex-col items-center justify-center text-center transform hover:scale-[1.02] transition-transform duration-300">
+              <ScoreGauge score={result.overallScore} />
+              <div className="mt-4 font-semibold text-textMuted uppercase tracking-wide text-sm">Overall Match Score</div>
             </div>
-            <div className="md:col-span-2 bg-bgMain border border-borderMain rounded-2xl p-6 shadow-lg space-y-3">
-              <h3 className="text-xl font-semibold flex items-center gap-2">
-                <Star className="w-5 h-5 text-yellow-500" />
+            <div className="md:col-span-2 bg-bgSecondary border border-borderMain rounded-3xl p-8 shadow-xl shadow-slate-200/20 dark:shadow-none space-y-4 transform hover:scale-[1.01] transition-transform duration-300">
+              <h3 className="text-2xl font-bold flex items-center gap-2 text-textMain">
+                <Star className="w-6 h-6 text-yellow-500 drop-shadow-sm" />
                 Executive Summary
               </h3>
-              <p className="opacity-80 leading-relaxed">{result.summary}</p>
+              <p className="text-textMuted leading-relaxed text-lg">{result.summary}</p>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-bgMain border border-borderMain rounded-2xl p-6 shadow-lg space-y-4">
-              <h3 className="text-xl font-semibold flex items-center gap-2">
-                <CheckCircle className="w-5 h-5 text-green-500" />
+            <div className="bg-bgSecondary border border-borderMain rounded-3xl p-8 shadow-xl shadow-slate-200/20 dark:shadow-none space-y-5">
+              <h3 className="text-2xl font-bold flex items-center gap-2 text-textMain">
+                <CheckCircle className="w-6 h-6 text-emerald-500" />
                 Key Strengths
               </h3>
-              <ul className="space-y-2">
+              <ul className="space-y-3">
                 {result.experienceAnalysis.strengths.map((str, i) => (
-                  <li key={i} className="flex gap-2 text-sm opacity-80">
-                    <span className="text-green-500 mt-1">•</span> {str}
+                  <li key={i} className="flex gap-3 text-textMuted items-start">
+                    <span className="text-emerald-500 mt-1 text-lg leading-none">•</span> 
+                    <span className="leading-relaxed">{str}</span>
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="bg-bgMain border border-borderMain rounded-2xl p-6 shadow-lg space-y-4">
-              <h3 className="text-xl font-semibold flex items-center gap-2">
-                <AlertCircle className="w-5 h-5 text-red-500" />
+            <div className="bg-bgSecondary border border-borderMain rounded-3xl p-8 shadow-xl shadow-slate-200/20 dark:shadow-none space-y-5">
+              <h3 className="text-2xl font-bold flex items-center gap-2 text-textMain">
+                <AlertCircle className="w-6 h-6 text-red-500" />
                 Areas for Improvement
               </h3>
-              <ul className="space-y-2">
+              <ul className="space-y-3">
                 {result.experienceAnalysis.weaknesses.map((weak, i) => (
-                  <li key={i} className="flex gap-2 text-sm opacity-80">
-                    <span className="text-red-500 mt-1">•</span> {weak}
+                  <li key={i} className="flex gap-3 text-textMuted items-start">
+                    <span className="text-red-500 mt-1 text-lg leading-none">•</span> 
+                    <span className="leading-relaxed">{weak}</span>
                   </li>
                 ))}
               </ul>
             </div>
           </div>
 
-          <div className="bg-bgMain border border-borderMain rounded-2xl p-6 shadow-lg space-y-6">
-            <h3 className="text-xl font-semibold flex items-center gap-2">
-              <Briefcase className="w-5 h-5 text-purple-500" />
+          <div className="bg-bgSecondary border border-borderMain rounded-3xl p-8 shadow-xl shadow-slate-200/20 dark:shadow-none space-y-6">
+            <h3 className="text-2xl font-bold flex items-center gap-2 text-textMain">
+              <Briefcase className="w-6 h-6 text-purple-500" />
               Skill Analysis
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {result.skills.map((skillGroup, i) => (
-                <div key={i} className="space-y-3">
-                  <div className="font-semibold">{skillGroup.category}</div>
+                <div key={i} className="space-y-4">
+                  <div className="font-bold text-textMain border-b border-borderMain pb-2">{skillGroup.category}</div>
                   <div className="flex flex-wrap gap-2">
                     {skillGroup.items.map((item, j) => (
                       <span
                         key={j}
-                        className="px-3 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-full text-xs"
+                        className="px-3 py-1.5 bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 rounded-lg text-sm font-medium hover:bg-blue-500/20 transition-colors cursor-default"
                       >
                         {item}
                       </span>
@@ -212,7 +225,7 @@ export const ResumePage = () => {
                 setFile(null);
                 setJobDescription('');
               }}
-              className="px-6 py-3 border border-borderMain hover:bg-bgDark rounded-lg transition-colors"
+              className="px-8 py-4 bg-bgSecondary text-textMain border border-borderMain hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl font-bold transition-colors shadow-sm"
             >
               Analyze Another Resume
             </button>

@@ -9,10 +9,10 @@ interface ChatInputProps {
 
 const ChatInput = ({ input, setInput, handleSend, loading }: ChatInputProps) => {
   return (
-    <form className="chat-input-container" onSubmit={handleSend}>
+    <form className="flex gap-3 max-w-4xl mx-auto w-full" onSubmit={handleSend}>
       <input 
         type="text" 
-        className="chat-input"
+        className="flex-1 px-5 py-4 rounded-full border border-borderMain bg-bgSecondary text-textMain focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm"
         value={input}
         onChange={(e) => setInput(e.target.value)}
         placeholder="Ask me anything..."
@@ -20,10 +20,10 @@ const ChatInput = ({ input, setInput, handleSend, loading }: ChatInputProps) => 
       />
       <button 
         type="submit" 
-        className="send-button"
+        className="bg-blue-600 hover:bg-blue-700 text-white border-none rounded-full w-14 h-14 flex justify-center items-center cursor-pointer transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg flex-shrink-0"
         disabled={!input.trim() || loading}
       >
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="ml-[-2px]">
           <line x1="22" y1="2" x2="11" y2="13"></line>
           <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
         </svg>
