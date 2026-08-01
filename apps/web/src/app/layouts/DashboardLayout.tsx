@@ -17,13 +17,15 @@ const DashboardLayout = () => {
 
   return (
     <div className="fixed inset-0 flex flex-col md:flex-row bg-bgMain text-textMain overflow-hidden transition-colors duration-300 z-0">
-      {/* Glassmorphic Background Orbs */}
-      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-brandRed/10 dark:bg-brandRed/20 blur-[120px] pointer-events-none animate-pulse-slow"></div>
-      <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-blue-500/10 dark:bg-blue-600/10 blur-[150px] pointer-events-none animate-float"></div>
+      {/* Glassmorphic Background Orbs - Wrapped in overflow-hidden to fix Chrome GPU bounding box bug */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-brandRed/10 dark:bg-brandRed/20 blur-[120px] animate-pulse-slow"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-blue-500/10 dark:bg-blue-600/10 blur-[150px] animate-float"></div>
+      </div>
 
       {/* Sidebar / Topnav */}
       <aside className="w-full md:w-64 border-b md:border-b-0 md:border-r border-borderMain bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl flex flex-col transition-all flex-shrink-0 z-50 shadow-sm md:shadow-none">
-        <div className="p-4 md:p-6 flex items-center justify-between">
+        <div className="p-4 md:p-6 flex items-center justify-between md:h-[101px] md:border-b md:border-borderMain shrink-0">
           <h1 className="text-xl md:text-2xl font-extrabold tracking-tight text-brandRed dark:text-brandRed">
             AI
           </h1>
@@ -40,7 +42,7 @@ const DashboardLayout = () => {
           </div>
         </div>
         
-        <nav className={`flex-1 px-4 pb-4 md:pb-0 overflow-y-auto flex-col gap-2 ${isMobileMenuOpen ? 'flex' : 'hidden md:flex'}`}>
+        <nav className={`flex-1 px-4 pt-4 md:pt-6 pb-4 md:pb-0 overflow-y-auto flex-col gap-2 ${isMobileMenuOpen ? 'flex' : 'hidden md:flex'}`}>
           {navItems.map((item) => (
             <NavLink
               key={item.path}
