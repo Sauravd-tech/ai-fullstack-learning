@@ -9,10 +9,10 @@ interface ChatInputProps {
 
 const ChatInput = ({ input, setInput, handleSend, loading }: ChatInputProps) => {
   return (
-    <form className="flex gap-3 max-w-4xl mx-auto w-full" onSubmit={handleSend}>
+    <form className="flex gap-3 max-w-4xl mx-auto w-full items-center" onSubmit={handleSend}>
       <input 
         type="text" 
-        className="flex-1 px-5 py-4 rounded-full border border-borderMain bg-bgSecondary text-textMain focus:outline-none focus:border-aramexRed focus:ring-2 focus:ring-aramexRed/20 transition-all shadow-sm"
+        className="flex-1 px-5 h-14 rounded-full border border-borderMain bg-bgSecondary text-textMain focus:outline-none focus:border-brandRed focus:ring-2 focus:ring-brandRed/20 transition-all shadow-sm"
         value={input}
         onChange={(e) => setInput(e.target.value)}
         placeholder="Ask me anything..."
@@ -20,7 +20,7 @@ const ChatInput = ({ input, setInput, handleSend, loading }: ChatInputProps) => 
       />
       <button 
         type="submit" 
-        className="bg-aramexRed hover:bg-aramexRedDark text-white border-none rounded-full w-14 h-14 flex justify-center items-center cursor-pointer transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg flex-shrink-0"
+        className="bg-brandRed hover:bg-brandRedDark text-white border-none rounded-full w-14 h-14 flex justify-center items-center cursor-pointer transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg flex-shrink-0"
         disabled={!input.trim() || loading}
       >
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="ml-[-2px]">

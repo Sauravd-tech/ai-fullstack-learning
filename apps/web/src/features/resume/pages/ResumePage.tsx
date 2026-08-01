@@ -65,7 +65,7 @@ export const ResumePage = () => {
     <div className="flex-1 w-full h-full overflow-y-auto p-4 sm:p-8">
       <div className="flex flex-col items-center justify-start min-h-full max-w-5xl mx-auto space-y-8 pb-12">
       <div className="text-center mt-4 md:mt-10 animate-fade-in">
-        <h1 className="text-4xl md:text-5xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-aramexRed to-aramexRedDark tracking-tight drop-shadow-sm">
+        <h1 className="text-4xl md:text-5xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-brandRed to-brandRedDark tracking-tight drop-shadow-sm">
           AI Resume Analyzer
         </h1>
         <p className="text-textMuted max-w-2xl mx-auto text-lg">
@@ -78,7 +78,7 @@ export const ResumePage = () => {
           <div
             onClick={() => fileInputRef.current?.click()}
             className={`border-2 border-dashed rounded-2xl p-10 md:p-14 flex flex-col items-center justify-center cursor-pointer transition-all duration-300 ${
-              file ? 'border-emerald-500 bg-emerald-500/10' : 'border-borderMain hover:border-aramexRed hover:bg-aramexRed/5 hover:shadow-lg hover:shadow-aramexRed/10'
+              file ? 'border-emerald-500 bg-emerald-500/10' : 'border-borderMain hover:border-brandRed hover:bg-brandRed/5 hover:shadow-lg hover:shadow-brandRed/10'
             }`}
           >
             <input
@@ -96,7 +96,7 @@ export const ResumePage = () => {
               </>
             ) : (
               <>
-                <UploadCloud className="w-14 h-14 text-aramexRed mb-4 opacity-80" />
+                <UploadCloud className="w-14 h-14 text-brandRed mb-4 opacity-80" />
                 <div className="font-semibold text-lg mb-2 text-textMain">Drag and drop your resume (PDF)</div>
                 <div className="text-textMuted text-sm">or click to browse from your computer (Max 5MB)</div>
               </>
@@ -106,7 +106,7 @@ export const ResumePage = () => {
           <div className="space-y-3">
             <label className="font-semibold text-sm text-textMuted uppercase tracking-wide">Target Job Description (Optional)</label>
             <textarea
-              className="w-full bg-bgMain border border-borderMain rounded-xl p-4 h-32 focus:outline-none focus:border-aramexRed focus:ring-2 focus:ring-aramexRed/20 transition-all text-textMain resize-none"
+              className="w-full bg-bgMain border border-borderMain rounded-xl p-4 h-32 focus:outline-none focus:border-brandRed focus:ring-2 focus:ring-brandRed/20 transition-all text-textMain resize-none"
               placeholder="Paste the job description here to tailor the analysis..."
               value={jobDescription}
               onChange={(e) => setJobDescription(e.target.value)}
@@ -123,7 +123,7 @@ export const ResumePage = () => {
           <button
             onClick={handleAnalyze}
             disabled={!file || loading}
-            className="w-full bg-gradient-to-r from-aramexRed to-aramexRedDark hover:from-red-700 hover:to-red-800 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-4 rounded-xl transition-all shadow-md hover:shadow-xl hover:shadow-aramexRed/20 flex justify-center items-center gap-2 text-lg transform hover:-translate-y-1 active:translate-y-0 disabled:transform-none"
+            className="w-full bg-gradient-to-r from-brandRed to-brandRedDark hover:from-red-700 hover:to-red-800 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-4 rounded-xl transition-all shadow-md hover:shadow-xl hover:shadow-brandRed/20 flex justify-center items-center gap-2 text-lg transform hover:-translate-y-1 active:translate-y-0 disabled:transform-none"
           >
             Analyze Resume
           </button>
@@ -141,7 +141,7 @@ export const ResumePage = () => {
             <div className="h-64 bg-bgSecondary border border-borderMain rounded-3xl shadow-sm"></div>
           </div>
           <div className="flex flex-col items-center mt-8 space-y-4">
-             <div className="w-12 h-12 border-4 border-aramexRed border-t-transparent rounded-full animate-spin"></div>
+             <div className="w-12 h-12 border-4 border-brandRed border-t-transparent rounded-full animate-spin"></div>
              <p className="text-textMuted font-medium animate-pulse">Our AI is reading your resume...</p>
           </div>
         </div>
@@ -150,11 +150,11 @@ export const ResumePage = () => {
       {result && !loading && (
         <div className="w-full max-w-5xl space-y-8 animate-slide-up">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-bgSecondary border border-borderMain rounded-3xl p-8 shadow-xl shadow-slate-200/20 dark:shadow-none flex flex-col items-center justify-center text-center transform hover:scale-[1.02] transition-transform duration-300">
+            <div className="bg-bgSecondary border border-borderMain rounded-3xl p-8 shadow-xl shadow-slate-200/20 dark:shadow-none flex flex-col items-center justify-center text-center transform hover:scale-[1.02] transition-transform duration-300 animate-slide-up delay-100 opacity-0" style={{ animationFillMode: 'forwards' }}>
               <ScoreGauge score={result.overallScore} />
               <div className="mt-4 font-semibold text-textMuted uppercase tracking-wide text-sm">Overall Match Score</div>
             </div>
-            <div className="md:col-span-2 bg-bgSecondary border border-borderMain rounded-3xl p-8 shadow-xl shadow-slate-200/20 dark:shadow-none space-y-4 transform hover:scale-[1.01] transition-transform duration-300">
+            <div className="md:col-span-2 bg-bgSecondary border border-borderMain rounded-3xl p-8 shadow-xl shadow-slate-200/20 dark:shadow-none space-y-4 transform hover:scale-[1.01] transition-transform duration-300 animate-slide-up delay-200 opacity-0" style={{ animationFillMode: 'forwards' }}>
               <h3 className="text-2xl font-bold flex items-center gap-2 text-textMain">
                 <Star className="w-6 h-6 text-yellow-500 drop-shadow-sm" />
                 Executive Summary
@@ -164,7 +164,7 @@ export const ResumePage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-bgSecondary border border-borderMain rounded-3xl p-8 shadow-xl shadow-slate-200/20 dark:shadow-none space-y-5">
+            <div className="bg-bgSecondary border border-borderMain rounded-3xl p-8 shadow-xl shadow-slate-200/20 dark:shadow-none space-y-5 animate-slide-up delay-300 opacity-0" style={{ animationFillMode: 'forwards' }}>
               <h3 className="text-2xl font-bold flex items-center gap-2 text-textMain">
                 <CheckCircle className="w-6 h-6 text-emerald-500" />
                 Key Strengths
@@ -178,8 +178,9 @@ export const ResumePage = () => {
                 ))}
               </ul>
             </div>
-            <div className="bg-bgSecondary border border-borderMain rounded-3xl p-8 shadow-xl shadow-slate-200/20 dark:shadow-none space-y-5">
-              <h3 className="text-2xl font-bold flex items-center gap-2 text-textMain">
+            {/* Areas for Improvement */}
+            <div className="bg-bgSecondary rounded-3xl p-8 border border-borderMain shadow-sm animate-slide-up delay-400 opacity-0" style={{ animationFillMode: 'forwards' }}>
+              <h3 className="text-xl font-bold mb-6 flex items-center gap-2 text-textMain">
                 <AlertCircle className="w-6 h-6 text-red-500" />
                 Areas for Improvement
               </h3>
@@ -194,7 +195,7 @@ export const ResumePage = () => {
             </div>
           </div>
 
-          <div className="bg-bgSecondary border border-borderMain rounded-3xl p-8 shadow-xl shadow-slate-200/20 dark:shadow-none space-y-6">
+          <div className="bg-bgSecondary border border-borderMain rounded-3xl p-8 shadow-xl shadow-slate-200/20 dark:shadow-none space-y-6 animate-slide-up delay-500 opacity-0" style={{ animationFillMode: 'forwards' }}>
             <h3 className="text-2xl font-bold flex items-center gap-2 text-textMain">
               <Briefcase className="w-6 h-6 text-purple-500" />
               Skill Analysis
@@ -207,7 +208,7 @@ export const ResumePage = () => {
                     {skillGroup.items.map((item, j) => (
                       <span
                         key={j}
-                        className="px-3 py-1.5 bg-aramexRed/10 text-aramexRed dark:text-red-400 border border-aramexRed/20 rounded-lg text-sm font-medium hover:bg-aramexRed/20 transition-colors cursor-default"
+                        className="px-3 py-1.5 bg-brandRed/10 text-brandRed dark:text-red-400 border border-brandRed/20 rounded-lg text-sm font-medium hover:bg-brandRed/20 transition-colors cursor-default"
                       >
                         {item}
                       </span>

@@ -86,7 +86,7 @@ export const ChatPage = () => {
     <div className="flex flex-col h-full w-full max-w-5xl mx-auto bg-bgMain shadow-2xl shadow-slate-200/10 dark:shadow-none transition-all duration-300">
       <header className="shrink-0 p-4 md:p-6 border-b border-borderMain bg-bgSecondary/80 backdrop-blur-md flex flex-col md:flex-row justify-between items-start md:items-center gap-4 z-10 sticky top-0">
         <div>
-          <h2 className="text-xl md:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-aramexRed to-aramexRedDark">
+          <h2 className="text-xl md:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-brandRed to-brandRedDark">
             AI Chat Assistant
           </h2>
           <p className="text-sm text-textMuted hidden md:block">Real-time streaming conversation</p>
@@ -94,16 +94,43 @@ export const ChatPage = () => {
         <SystemPromptSelect value={systemInstruction} onChange={setSystemInstruction} />
       </header>
 
-      <div className="flex-1 overflow-y-auto p-4 md:p-8 flex flex-col gap-6 scrollbar-hide">
+      <div className="flex-1 overflow-y-auto p-4 md:p-8 flex flex-col gap-6 scrollbar-hide relative">
+        
+        {/* Loading Glow Orb */}
+        {loading && (
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-brandRed/20 blur-[60px] rounded-full pointer-events-none animate-pulse"></div>
+        )}
+
         {messages.length === 0 && (
-          <div className="text-center mt-20 flex flex-col items-center justify-center animate-fade-in">
-            <div className="w-20 h-20 bg-aramexRed/10 rounded-full flex items-center justify-center mb-6">
-              <svg className="w-10 h-10 text-aramexRed" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div className="text-center mt-10 md:mt-20 flex flex-col items-center justify-center animate-fade-in">
+            <div className="w-20 h-20 bg-brandRed/10 rounded-full flex items-center justify-center mb-6">
+              <svg className="w-10 h-10 text-brandRed" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
               </svg>
             </div>
             <h3 className="text-2xl font-bold text-textMain mb-2">How can I help you today?</h3>
-            <p className="text-textMuted max-w-md">Send a message to start chatting. I can write code, analyze data, or just have a conversation.</p>
+            <p className="text-textMuted max-w-md mb-8">Send a message to start chatting. I can write code, analyze data, or just have a conversation.</p>
+            
+            {/* Prompt Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl w-full">
+              {[
+                { title: "Analyze a logistics route", desc: "Optimize delivery path from NY to LA" },
+                { title: "Write an email", desc: "Draft a polite decline to a supplier" },
+                { title: "Explain our return policy", desc: "Summarize the 30-day return terms" },
+                { title: "Debug code", desc: "Help me fix a React rendering issue" }
+              ].map((card, i) => (
+                <div 
+                  key={i} 
+                  onClick={() => {
+                    setInput(card.title);
+                  }}
+                  className={`p-4 rounded-2xl border border-borderMain bg-bgSecondary hover:border-brandRed/50 hover:shadow-lg hover:shadow-brandRed/5 cursor-pointer transition-all duration-300 text-left group delay-${(i + 1) * 100} animate-slide-up hover:-translate-y-1`}
+                >
+                  <div className="font-semibold text-textMain group-hover:text-brandRed transition-colors mb-1">{card.title}</div>
+                  <div className="text-sm text-textMuted">{card.desc}</div>
+                </div>
+              ))}
+            </div>
           </div>
         )}
         
