@@ -1,6 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
+@theme {
+  --color-bgMain: var(--bg-main);
+  --color-bgSecondary: var(--bg-secondary);
+  --color-borderMain: var(--border-main);
+  --color-textMain: var(--text-main);
+  --color-textMuted: var(--text-muted);
+  
+  --font-sans: 'Inter', sans-serif;
+  
+  --animate-fade-in: fadeIn 0.5s ease-out;
+  --animate-slide-up: slideUp 0.5s ease-out;
+  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  @keyframes slideUp {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+}
+
 @layer base {
   :root {
     --bg-main: #f8fafc;

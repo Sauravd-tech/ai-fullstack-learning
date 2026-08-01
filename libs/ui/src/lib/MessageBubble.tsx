@@ -21,9 +21,11 @@ const MessageBubble = ({ msg }: MessageBubbleProps) => {
       {isUser ? (
         msg.text
       ) : (
-        <ReactMarkdown remarkPlugins={[remarkGfm]} className="prose-custom prose-sm md:prose-base dark:prose-invert">
-          {msg.text}
-        </ReactMarkdown>
+        <div className="prose-custom prose-sm md:prose-base dark:prose-invert">
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+            {msg.text}
+          </ReactMarkdown>
+        </div>
       )}
     </div>
   );
