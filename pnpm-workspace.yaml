@@ -1,0 +1,38 @@
+packages:
+  - 'apps/*'
+  - 'libs/*'
+allowBuilds:
+  '@parcel/watcher': set this to true or false
+  '@swc/core': set this to true or false
+  core-js-pure: set this to true or false
+  less: set this to true or false
+  nx: set this to true or false
+  unrs-resolver: false
+minimumReleaseAgeExclude:
+  - '@nx/devkit@23.1.1'
+  - '@nx/docker@23.1.1'
+  - '@nx/eslint-plugin@23.1.1'
+  - '@nx/eslint@23.1.1'
+  - '@nx/express@23.1.1'
+  - '@nx/jest@23.1.1'
+  - '@nx/js@23.1.1'
+  - '@nx/module-federation@23.1.1'
+  - '@nx/node@23.1.1'
+  - '@nx/nx-darwin-arm64@23.1.1'
+  - '@nx/nx-darwin-x64@23.1.1'
+  - '@nx/nx-freebsd-x64@23.1.1'
+  - '@nx/nx-linux-arm-gnueabihf@23.1.1'
+  - '@nx/nx-linux-arm64-gnu@23.1.1'
+  - '@nx/nx-linux-arm64-musl@23.1.1'
+  - '@nx/nx-linux-x64-gnu@23.1.1'
+  - '@nx/nx-linux-x64-musl@23.1.1'
+  - '@nx/nx-win32-arm64-msvc@23.1.1'
+  - '@nx/nx-win32-x64-msvc@23.1.1'
+  - '@nx/react@23.1.1'
+  - '@nx/rollup@23.1.1'
+  - '@nx/vite@23.1.1'
+  - '@nx/vitest@23.1.1'
+  - '@nx/web@23.1.1'
+  - '@nx/webpack@23.1.1'
+  - '@nx/workspace@23.1.1'
+  - nx@23.1.1

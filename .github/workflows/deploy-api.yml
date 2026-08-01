@@ -1,0 +1,23 @@
+name: Deploy API to Render
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'apps/api/**'
+      - 'libs/**'
+
+jobs:
+  deploy:
+    name: Deploy to Render
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Render Deployment
+        run: |
+          if [ -z "${{ secrets.RENDER_DEPLOY_HOOK }}" ]; then
+            echo "Error: RENDER_DEPLOY_HOOK secret is not set in GitHub Settings > Secrets"
+            exit 1
+          fi
+          curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK }}"
+          echo "Deployment triggered successfully!"
